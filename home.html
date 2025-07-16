@@ -299,16 +299,8 @@
     </style>
 </head>
 <body>
-    <nav class="nav-bar">
-        <div class="nav-container">
-            <div class="logo">Multimedia & Authoring</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Include header -->
+    <div id="header-container"></div>
 
     <header class="hero" id="home">
         <div class="starfield"></div>
@@ -357,15 +349,42 @@
     </footer>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+                
+                // Initialize functionality after header is loaded
+                initializeNavigation();
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+            });
+
+        function initializeNavigation() {
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
-        });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.nav-bar');
+                if (navbar) {
+                    if (window.pageYOffset > 50) {
+                        navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+                    } else {
+                        navbar.style.background = 'rgba(0, 0, 0, 0.7)';
+                    }
+                }
+            });
+        }
 
         // Planet tooltips
         const tooltip = document.getElementById('tooltip');
@@ -385,16 +404,6 @@
                 tooltip.style.left = e.pageX + 10 + 'px';
                 tooltip.style.top = e.pageY - 10 + 'px';
             });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.nav-bar');
-            if (window.pageYOffset > 50) {
-                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
-            } else {
-                navbar.style.background = 'rgba(0, 0, 0, 0.7)';
-            }
         });
     </script>
 </body>

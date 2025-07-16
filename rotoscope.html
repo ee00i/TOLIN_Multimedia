@@ -13,8 +13,8 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
+            background: radial-gradient(circle at 30% 20%, #1a0033 0%, #000000 50%, #2d1b3d 100%);
+            color: #e0d4f7;
             overflow-x: hidden;
         }
 
@@ -22,12 +22,12 @@
         .nav-bar {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
             padding: 20px 50px;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             z-index: 100;
+            border-bottom: 1px solid rgba(156, 39, 176, 0.3);
             transition: background 0.3s ease;
         }
 
@@ -40,38 +40,25 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #4ecdc4;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #4ecdc4;
+            color: #e1bee7;
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.8);
         }
 
         .back-btn {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
         }
 
         .back-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(156, 39, 176, 0.6);
         }
 
         /* Hero Section */
@@ -82,28 +69,43 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0a 70%);
+        }
+
+        .starfield {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: starMove 20s linear infinite;
+        }
+
+        @keyframes starMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            background-clip: text;
+            background: linear-gradient(45deg, #9c27b0, #e1bee7, #6a1b9a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 3s ease-in-out infinite alternate;
+            animation: titleGlow 3s ease-in-out infinite alternate;
         }
 
-        @keyframes glow {
-            0% { filter: brightness(1); }
-            100% { filter: brightness(1.3); }
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 30px rgba(156, 39, 176, 0.8); }
+            100% { text-shadow: 0 0 50px rgba(156, 39, 176, 1); }
         }
 
         .hero-content p {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            color: #d1c4e9;
         }
 
         .hero-stats {
@@ -116,62 +118,29 @@
         .stat-item {
             text-align: center;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            background: rgba(30, 0, 60, 0.6);
+            border-radius: 15px;
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease;
             cursor: pointer;
+            border: 1px solid rgba(156, 39, 176, 0.3);
         }
 
         .stat-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.4);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #4ecdc4;
+            color: #e1bee7;
         }
 
         .stat-label {
             font-size: 1rem;
             opacity: 0.8;
-        }
-
-        /* Floating Animation Effect */
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .floating-element {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-            opacity: 0.6;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            color: #d1c4e9;
         }
 
         /* Main Content */
@@ -181,25 +150,22 @@
             margin: 0 auto;
         }
 
-        .section {
-            margin-bottom: 60px;
-        }
-
         .section h2 {
             font-size: 2.5rem;
             margin-bottom: 30px;
-            color: #4ecdc4;
+            color: #e1bee7;
             text-align: center;
+            text-shadow: 0 0 20px rgba(156, 39, 176, 0.6);
         }
 
-        /* Full Compilation Section */
+        /* Video Container */
         .full-compilation {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(30, 0, 60, 0.4);
             border-radius: 20px;
             padding: 40px;
             margin-bottom: 60px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(156, 39, 176, 0.3);
         }
 
         .video-container {
@@ -207,31 +173,30 @@
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
-            background: #000;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-element {
-            width: 100%;
-            height: 450px;
-            border-radius: 15px;
-            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.3);
         }
 
         .video-placeholder {
             width: 100%;
             height: 450px;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            background: linear-gradient(45deg, #1a0033, #2d1b3d);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            color: #ffffff;
+            color: #e0d4f7;
             border-radius: 15px;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(156, 39, 176, 0.4);
         }
 
         .video-placeholder::before {
@@ -241,7 +206,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(156, 39, 176, 0.2), transparent);
             animation: shimmer 3s infinite;
         }
 
@@ -250,10 +215,16 @@
             100% { left: 100%; }
         }
 
-        .video-placeholder i {
+        .play-icon {
             font-size: 4rem;
             margin-bottom: 1rem;
-            color: #4ecdc4;
+            color: #e1bee7;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover .play-icon {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(156, 39, 176, 0.8);
         }
 
         .video-info {
@@ -262,7 +233,7 @@
         }
 
         .video-info h3 {
-            color: #ff6b6b;
+            color: #e1bee7;
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
@@ -270,6 +241,7 @@
         .video-info p {
             opacity: 0.8;
             line-height: 1.6;
+            color: #d1c4e9;
         }
 
         /* Weekly Grid */
@@ -281,12 +253,12 @@
         }
 
         .week-card {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(30, 0, 60, 0.6);
             border-radius: 15px;
             padding: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(156, 39, 176, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -298,12 +270,13 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(90deg, #9c27b0, #e1bee7);
         }
 
         .week-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.2);
+            box-shadow: 0 15px 40px rgba(156, 39, 176, 0.4);
+            border-color: rgba(156, 39, 176, 0.8);
         }
 
         .week-header {
@@ -316,18 +289,19 @@
         .week-number {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #4ecdc4;
+            color: #e1bee7;
         }
 
         .week-date {
             font-size: 0.9rem;
             opacity: 0.7;
+            color: #d1c4e9;
         }
 
         .week-video {
             width: 100%;
             height: 200px;
-            background: linear-gradient(45deg, #2a2a3e, #1a1a2e);
+            background: linear-gradient(45deg, #1a0033, #2d1b3d);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -336,29 +310,17 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .week-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
+        .week-video:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(156, 39, 176, 0.3);
         }
 
-        .week-video::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            animation: shimmer 4s infinite;
-        }
-
-        .play-icon {
-            font-size: 3rem;
-            color: #ff6b6b;
+        .week-video .play-icon {
+            font-size: 2.5rem;
+            color: #e1bee7;
             opacity: 0.8;
             transition: all 0.3s ease;
         }
@@ -366,18 +328,20 @@
         .week-video:hover .play-icon {
             opacity: 1;
             transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.8);
         }
 
         .week-description {
             font-size: 0.9rem;
             line-height: 1.5;
             opacity: 0.9;
+            color: #d1c4e9;
         }
 
         .week-progress {
             width: 100%;
             height: 4px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(156, 39, 176, 0.2);
             border-radius: 2px;
             margin-top: 15px;
             overflow: hidden;
@@ -385,7 +349,7 @@
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(90deg, #9c27b0, #e1bee7);
             border-radius: 2px;
             animation: progressLoad 2s ease-out;
         }
@@ -395,62 +359,12 @@
             100% { width: var(--progress); }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-bar {
-                padding: 15px 20px;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .main-content {
-                padding: 30px 20px;
-            }
-
-            .weekly-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .video-placeholder {
-                height: 300px;
-            }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #ff5252, #26a69a);
-        }
-
         /* Scroll to top button */
         .scroll-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
             color: white;
             border: none;
             border-radius: 50%;
@@ -462,6 +376,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1000;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
         }
 
         .scroll-top.visible {
@@ -471,6 +386,36 @@
 
         .scroll-top:hover {
             transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(156, 39, 176, 0.6);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(156, 39, 176, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #9c27b0, #e1bee7);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #7b1fa2, #9c27b0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-bar { padding: 15px 20px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.1rem; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .main-content { padding: 30px 20px; }
+            .weekly-grid { grid-template-columns: 1fr; }
+            .video-placeholder { height: 300px; }
         }
     </style>
 </head>
@@ -487,7 +432,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="floating-elements" id="floatingElements"></div>
+        <div class="starfield"></div>
         <div class="hero-content">
             <h1>Rotoscope Animation Journey</h1>
             <p>14 Weeks of Frame-by-Frame Animation Mastery</p>
@@ -515,7 +460,6 @@
             <div class="full-compilation">
                 <h2>🎬 Complete 14-Week Compilation</h2>
                 <div class="video-container">
-                    <!-- Main compilation video placeholder -->
                     <div class="video-placeholder">
                         <div class="play-icon">▶</div>
                         <h3>Master Compilation Video</h3>
@@ -524,7 +468,7 @@
                 </div>
                 <div class="video-info">
                     <h3>Master Compilation Video</h3>
-                    <p>This comprehensive video showcases the entire 14-week journey of rotoscope animation learning, featuring all weekly assignments compiled into one seamless presentation. Each week builds upon the previous, demonstrating progressive skill development and mastery of the rotoscope technique.</p>
+                    <p>This comprehensive video showcases the entire 14-week journey of rotoscope animation learning, featuring all weekly assignments compiled into one seamless presentation.</p>
                 </div>
             </div>
         </section>
@@ -533,7 +477,6 @@
         <section class="section">
             <h2>📅 Weekly Breakdown</h2>
             <div class="weekly-grid">
-                <!-- Week 1 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 1</div>
@@ -550,7 +493,6 @@
                     </div>
                 </div>
 
-                <!-- Week 2 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 2</div>
@@ -567,7 +509,6 @@
                     </div>
                 </div>
 
-                <!-- Week 3 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 3</div>
@@ -584,7 +525,6 @@
                     </div>
                 </div>
 
-                <!-- Week 4 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 4</div>
@@ -601,7 +541,6 @@
                     </div>
                 </div>
 
-                <!-- Week 5 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 5</div>
@@ -618,7 +557,6 @@
                     </div>
                 </div>
 
-                <!-- Week 6 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 6</div>
@@ -635,7 +573,6 @@
                     </div>
                 </div>
 
-                <!-- Week 7 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 7</div>
@@ -652,7 +589,6 @@
                     </div>
                 </div>
 
-                <!-- Week 8 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 8</div>
@@ -669,7 +605,6 @@
                     </div>
                 </div>
 
-                <!-- Week 9 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 9</div>
@@ -686,7 +621,6 @@
                     </div>
                 </div>
 
-                <!-- Week 10 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 10</div>
@@ -703,7 +637,6 @@
                     </div>
                 </div>
 
-                <!-- Week 11 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 11</div>
@@ -720,7 +653,6 @@
                     </div>
                 </div>
 
-                <!-- Week 12 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 12</div>
@@ -737,7 +669,6 @@
                     </div>
                 </div>
 
-                <!-- Week 13 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 13</div>
@@ -754,7 +685,6 @@
                     </div>
                 </div>
 
-                <!-- Week 14 -->
                 <div class="week-card">
                     <div class="week-header">
                         <div class="week-number">Week 14</div>
@@ -778,137 +708,61 @@
     <button class="scroll-top" id="scrollTop">↑</button>
 
     <script>
-        // Create floating elements animation
-        function createFloatingElements() {
-            const container = document.getElementById('floatingElements');
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
-            
-            for (let i = 0; i < 15; i++) {
-                const element = document.createElement('div');
-                element.className = 'floating-element';
-                element.style.left = Math.random() * 100 + '%';
-                element.style.animationDelay = Math.random() * 15 + 's';
-                element.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                element.style.background = colors[Math.floor(Math.random() * colors.length)];
-                element.style.width = (Math.random() * 20 + 10) + 'px';
-                element.style.height = element.style.width;
-                container.appendChild(element);
-            }
-        }
-
         // Scroll to top functionality
-        function initScrollToTop() {
-            const scrollTopBtn = document.getElementById('scrollTop');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    scrollTopBtn.classList.add('visible');
-                } else {
-                    scrollTopBtn.classList.remove('visible');
-                }
-            });
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.pageYOffset > 300);
+        });
 
-            scrollTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-        // Navigation bar scroll effect
-        function initNavScrollEffect() {
-            const navbar = document.querySelector('.nav-bar');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 50) {
-                    navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-                } else {
-                    navbar.style.background = 'rgba(0, 0, 0, 0.9)';
-                }
-            });
-        }
+        // Navigation scroll effect
+        const navbar = document.querySelector('.nav-bar');
+        window.addEventListener('scroll', () => {
+            navbar.style.background = window.pageYOffset > 50 ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.8)';
+        });
 
-        // Week card hover effects
-        function initWeekCardEffects() {
-            const weekCards = document.querySelectorAll('.week-card');
-            
-            weekCards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const progressBar = card.querySelector('.progress-bar');
-                    if (progressBar) {
-                        progressBar.style.animation = 'none';
-                        progressBar.offsetHeight; // Trigger reflow
-                        progressBar.style.animation = 'progressLoad 0.5s ease-out';
-                    }
-                });
-            });
-        }
+        // Video click handlers
+        document.querySelectorAll('.week-video, .video-placeholder').forEach(element => {
+            element.addEventListener('click', () => {
+                const weekCard = element.closest('.week-card');
+                const weekNumber = weekCard ? weekCard.querySelector('.week-number').textContent : 'Compilation';
+                
+                // Show notification
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed; top: 20px; right: 20px; z-index: 1000;
+                    background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+                    color: white; padding: 15px 25px; border-radius: 10px;
+                    font-weight: bold; transform: translateX(100%);
+                    transition: transform 0.3s ease; max-width: 300px;
+                    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+                `;
+                notification.textContent = `${weekNumber} video would load here. Replace with your actual video files.`;
+                document.body.appendChild(notification);
 
-        // Video placeholder click handlers
-        function initVideoPlaceholders() {
-            const videoPlaceholders = document.querySelectorAll('.week-video, .video-placeholder');
-            
-            videoPlaceholders.forEach(placeholder => {
-                placeholder.addEventListener('click', () => {
-                    // In a real implementation, you would replace this with actual video loading logic
-                    const weekCard = placeholder.closest('.week-card');
-                    const weekNumber = weekCard ? weekCard.querySelector('.week-number').textContent : 'Compilation';
-                    
-                    // Show a notification or modal
-                    showNotification(`${weekNumber} video would load here. Replace with your actual video files.`);
-                });
-            });
-        }
-
-        // Show notification function
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                z-index: 1000;
-                font-weight: bold;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                max-width: 300px;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            // Animate in
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.style.transform = 'translateX(0)', 100);
                 setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // Smooth scroll for anchor links
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => document.body.removeChild(notification), 300);
+                }, 3000);
             });
-        }
+        });
 
-        // Intersection Observer for scroll animations
+        // Progress bar animation on card hover
+        document.querySelectorAll('.week-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const progressBar = card.querySelector('.progress-bar');
+                if (progressBar) {
+                    progressBar.style.animation = 'none';
+                    progressBar.offsetHeight;
+                    progressBar.style.animation = 'progressLoad 0.5s ease-out';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
