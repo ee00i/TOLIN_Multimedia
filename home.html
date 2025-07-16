@@ -13,26 +13,129 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
+            background: radial-gradient(circle at 30% 20%, #1a0033 0%, #000000 50%, #2d1b3d 100%);
+            color: #e0d4f7;
             overflow-x: hidden;
         }
 
-        /* Solar System Header */
-        .solar-system-header {
-            position: relative;
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(156, 39, 176, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e1bee7;
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.8);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #d1c4e9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e1bee7;
+            text-shadow: 0 0 10px rgba(156, 39, 176, 0.8);
+        }
+
+        .hero {
             height: 100vh;
-            background: radial-gradient(circle at center, #0f0f23 0%, #000 70%);
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .starfield {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: starMove 20s linear infinite;
+        }
+
+        @keyframes starMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .content {
+            flex: 1;
+            max-width: 500px;
+            z-index: 10;
+        }
+
+        .content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #9c27b0, #e1bee7, #6a1b9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(156, 39, 176, 0.8);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 30px rgba(156, 39, 176, 0.8); }
+            100% { text-shadow: 0 0 50px rgba(156, 39, 176, 1); }
+        }
+
+        .content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #d1c4e9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(156, 39, 176, 0.6);
         }
 
         .solar-system {
             position: relative;
-            width: 800px;
-            height: 800px;
+            width: 600px;
+            height: 600px;
+            flex-shrink: 0;
         }
 
         .sun {
@@ -40,12 +143,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, #ffeb3b 0%, #ff9800 100%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffa500 0%, #ff4500 50%, #8b0000 100%);
             border-radius: 50%;
-            box-shadow: 0 0 50px #ffeb3b, 0 0 100px #ff9800;
-            animation: sunPulse 4s ease-in-out infinite alternate;
+            box-shadow: 0 0 40px #ffa500, 0 0 80px #ff4500;
+            animation: sunPulse 3s ease-in-out infinite alternate;
         }
 
         @keyframes sunPulse {
@@ -58,16 +161,18 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.2);
             border-radius: 50%;
-            animation: rotate 360s linear infinite;
         }
 
-        .orbit-1 { width: 200px; height: 200px; animation-duration: 20s; }
-        .orbit-2 { width: 300px; height: 300px; animation-duration: 30s; }
-        .orbit-3 { width: 400px; height: 400px; animation-duration: 40s; }
-        .orbit-4 { width: 500px; height: 500px; animation-duration: 50s; }
-        .orbit-5 { width: 600px; height: 600px; animation-duration: 60s; }
+        .orbit-1 { width: 120px; height: 120px; animation: rotate 10s linear infinite; }
+        .orbit-2 { width: 140px; height: 140px; animation: rotate 15s linear infinite; }
+        .orbit-3 { width: 160px; height: 160px; animation: rotate 20s linear infinite; }
+        .orbit-4 { width: 180px; height: 180px; animation: rotate 25s linear infinite; }
+        .orbit-5 { width: 220px; height: 220px; animation: rotate 35s linear infinite; }
+        .orbit-6 { width: 260px; height: 260px; animation: rotate 45s linear infinite; }
+        .orbit-7 { width: 300px; height: 300px; animation: rotate 60s linear infinite; }
+        .orbit-8 { width: 340px; height: 340px; animation: rotate 75s linear infinite; }
 
         @keyframes rotate {
             from { transform: translate(-50%, -50%) rotate(0deg); }
@@ -77,253 +182,90 @@
         .planet {
             position: absolute;
             border-radius: 50%;
-            top: -10px;
+            top: -6px;
             left: 50%;
             transform: translateX(-50%);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-        }
-
-        .mercury { width: 15px; height: 15px; background: #8c7853; }
-        .venus { width: 20px; height: 20px; background: #ff6b47; }
-        .earth { 
-            width: 25px; 
-            height: 25px; 
-            background: linear-gradient(45deg, #4fc3f7 0%, #29b6f6 50%, #0277bd 100%);
-        }
-        .mars { width: 18px; height: 18px; background: #d32f2f; }
-        .jupiter { width: 35px; height: 35px; background: #ff8a65; }
-
-        /* Rotoscope Effect */
-        .rotoscope-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                transparent 0%, 
-                rgba(255, 0, 150, 0.1) 25%, 
-                transparent 50%, 
-                rgba(0, 255, 255, 0.1) 75%, 
-                transparent 100%);
-            animation: rotoscope 8s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes rotoscope {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Header Content */
-        .header-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 10;
-        }
-
-        .header-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            animation: titleGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            0% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
-            100% { text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.5); }
-        }
-
-        .header-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+        .planet:hover {
+            transform: translateX(-50%) scale(1.5);
+            filter: brightness(1.3);
         }
 
-        /* Navigation */
-        .nav-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 50px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            transition: background 0.3s ease;
-        }
+        .mercury { width: 8px; height: 8px; background: #8c7853; }
+        .venus { width: 12px; height: 12px; background: #ffc649; }
+        .earth { width: 12px; height: 12px; background: #4fc3f7; }
+        .mars { width: 10px; height: 10px; background: #d32f2f; }
+        .jupiter { width: 24px; height: 24px; background: #d2691e; }
+        .saturn { width: 20px; height: 20px; background: #fab1a0; }
+        .uranus { width: 16px; height: 16px; background: #74b9ff; }
+        .neptune { width: 16px; height: 16px; background: #0984e3; }
 
-        .nav-bar.scrolled {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4ecdc4;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #4ecdc4;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: left 0.3s ease;
-            z-index: 200;
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .mobile-menu a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 2rem;
-            margin: 20px 0;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-menu a:hover {
-            color: #4ecdc4;
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 100px 50px;
+        .services {
+            padding: 80px 50px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section {
-            margin-bottom: 80px;
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #4ecdc4;
+        .services h2 {
             text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #e1bee7;
+            text-shadow: 0 0 20px rgba(156, 39, 176, 0.6);
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+            gap: 30px;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(30, 0, 60, 0.6);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(156, 39, 176, 0.3);
         }
 
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.4);
+            border-color: rgba(156, 39, 176, 0.8);
         }
 
         .service-card h3 {
-            color: #ff6b6b;
-            font-size: 1.5rem;
+            color: #e1bee7;
+            font-size: 1.4rem;
             margin-bottom: 15px;
         }
 
         .service-card p {
             line-height: 1.6;
+            color: #d1c4e9;
             opacity: 0.9;
         }
 
-        /* Footer */
         .footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 50px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
             text-align: center;
+            border-top: 1px solid rgba(156, 39, 176, 0.3);
         }
 
         .footer p {
-            opacity: 0.7;
+            color: #b39ddb;
+            opacity: 0.8;
         }
 
-        /* Planet Tooltip */
-        .planet-tooltip {
+        .tooltip {
             position: absolute;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
+            background: rgba(0, 0, 0, 0.9);
+            color: #e1bee7;
             padding: 8px 12px;
             border-radius: 4px;
             font-size: 0.8rem;
@@ -331,217 +273,112 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 50;
+            border: 1px solid rgba(156, 39, 176, 0.5);
         }
 
-        .planet-tooltip.visible {
+        .tooltip.visible {
             opacity: 1;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-bar {
-                padding: 15px 20px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .header-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .header-content p {
-                font-size: 1.2rem;
-            }
-            
-            .main-content {
-                padding: 50px 20px;
-            }
-            
-            .solar-system {
-                width: 400px;
-                height: 400px;
-            }
-            
-            .orbit-1 { width: 100px; height: 100px; }
-            .orbit-2 { width: 150px; height: 150px; }
-            .orbit-3 { width: 200px; height: 200px; }
-            .orbit-4 { width: 250px; height: 250px; }
-            .orbit-5 { width: 300px; height: 300px; }
-        }
-
-        @media (max-width: 480px) {
-            .header-content h1 {
-                font-size: 2rem;
-            }
-            
-            .header-content p {
-                font-size: 1rem;
-            }
-            
-            .solar-system {
-                width: 300px;
-                height: 300px;
-            }
-            
+            .nav-bar { padding: 15px 20px; }
+            .hero { flex-direction: column; text-align: center; padding: 20px; }
+            .content { margin-bottom: 30px; }
+            .content h1 { font-size: 2.5rem; }
+            .solar-system { width: 400px; height: 400px; }
+            .services { padding: 50px 20px; }
             .orbit-1 { width: 80px; height: 80px; }
-            .orbit-2 { width: 120px; height: 120px; }
-            .orbit-3 { width: 160px; height: 160px; }
-            .orbit-4 { width: 200px; height: 200px; }
-            .orbit-5 { width: 240px; height: 240px; }
+            .orbit-2 { width: 95px; height: 95px; }
+            .orbit-3 { width: 110px; height: 110px; }
+            .orbit-4 { width: 125px; height: 125px; }
+            .orbit-5 { width: 150px; height: 150px; }
+            .orbit-6 { width: 175px; height: 175px; }
+            .orbit-7 { width: 200px; height: 200px; }
+            .orbit-8 { width: 225px; height: 225px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav-bar" id="navbar">
+    <nav class="nav-bar">
         <div class="nav-container">
-            <div class="logo">Multimedia and Authoring</div>
+            <div class="logo">Multimedia & Authoring</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="rotoscope.html">Rotoscope</a></li>
-                <li><a href="#solarsystem">Solar System</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
-        <a href="#home" onclick="toggleMobileMenu()">Home</a>
-        <a href="rotoscope.html">Rotoscope</a>
-        <a href="#solarsystem" onclick="toggleMobileMenu()">Solar System</a>
-    </div>
-
-    <!-- Solar System Header -->
-    <header class="solar-system-header" id="home">
-        <div class="solar-system">
-            <div class="sun"></div>
-            
-            <div class="orbit orbit-1">
-                <div class="planet mercury" data-planet="Mercury"></div>
-            </div>
-            
-            <div class="orbit orbit-2">
-                <div class="planet venus" data-planet="Venus"></div>
-            </div>
-            
-            <div class="orbit orbit-3">
-                <div class="planet earth" data-planet="Earth"></div>
-            </div>
-            
-            <div class="orbit orbit-4">
-                <div class="planet mars" data-planet="Mars"></div>
-            </div>
-            
-            <div class="orbit orbit-5">
-                <div class="planet jupiter" data-planet="Jupiter"></div>
-            </div>
+    <header class="hero" id="home">
+        <div class="starfield"></div>
+        
+        <div class="content">
+            <h1>MULTIMEDIA AND AUTHORING</h1>
+            <p>Ernesto M. Tolin III | BSIT-S-2A-T</p>
+            <a href="#services" class="cta-button">Explore Our Universe</a>
         </div>
         
-        <div class="rotoscope-overlay"></div>
-        
-        <div class="header-content">
-            <h1>MULTIMEDIA AND AUTHORING</h1>
-            <p>Jerome Steven Rosario | BSIT-S-2A-T</p>
-            <a href="#services" class="cta-button">Explore Our Universe</a>
+        <div class="solar-system">
+            <div class="sun"></div>
+            <div class="orbit orbit-1"><div class="planet mercury" data-planet="Mercury"></div></div>
+            <div class="orbit orbit-2"><div class="planet venus" data-planet="Venus"></div></div>
+            <div class="orbit orbit-3"><div class="planet earth" data-planet="Earth"></div></div>
+            <div class="orbit orbit-4"><div class="planet mars" data-planet="Mars"></div></div>
+            <div class="orbit orbit-5"><div class="planet jupiter" data-planet="Jupiter"></div></div>
+            <div class="orbit orbit-6"><div class="planet saturn" data-planet="Saturn"></div></div>
+            <div class="orbit orbit-7"><div class="planet uranus" data-planet="Uranus"></div></div>
+            <div class="orbit orbit-8"><div class="planet neptune" data-planet="Neptune"></div></div>
         </div>
     </header>
 
-    <!-- Planet Tooltip -->
-    <div class="planet-tooltip" id="planetTooltip"></div>
+    <div class="tooltip" id="tooltip"></div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <section class="section" id="services">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Rotoscope Animation</h3>
-                    <p><strong>Definition:</strong> Rotoscoping is an animation technique where animators trace over live-action footage frame by frame to create realistic motion. This method produces fluid, lifelike animations by capturing the natural movement of real subjects and translating it into animated sequences.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>Solar System in Blender</h3>
-                    <p><strong>3D Modeling & Animation:</strong> Create accurate solar system models in Blender with realistic planetary movements, orbital mechanics, and celestial body textures. We develop educational and scientific visualizations that showcase the beauty and complexity of our cosmic neighborhood.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>3D Rendering Services</h3>
-                    <p><strong>High-Quality Visualization:</strong> Professional 3D rendering services using industry-standard software like Blender, Maya, and Cinema 4D. We create photorealistic visualizations, architectural renderings, product demonstrations, and cinematic sequences with advanced lighting and materials.</p>
-                </div>
+    <main class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Rotoscope Animation</h3>
+                <p>Professional rotoscoping techniques for creating realistic animations by tracing over live-action footage frame by frame.</p>
             </div>
-        </section>
+            <div class="service-card">
+                <h3>Solar System Modeling</h3>
+                <p>Accurate 3D solar system models in Blender with realistic planetary movements and orbital mechanics.</p>
+            </div>
+            <div class="service-card">
+                <h3>3D Rendering</h3>
+                <p>High-quality 3D visualizations using industry-standard software for architectural and product rendering.</p>
+            </div>
+        </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 Cosmic Media Studios. All rights reserved. | Crafting digital experiences across the universe.</p>
+        <p>&copy; 2025 Multimedia & Authoring. All rights reserved.</p>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
-        }
-
-        // Smooth scrolling for navigation links (only for anchor links)
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            const scrolled = window.pageYOffset;
-            
-            if (scrolled > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            // Add parallax effect to header
-            const header = document.querySelector('.solar-system-header');
-            if (header) {
-                header.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Planet tooltip functionality
-        const tooltip = document.getElementById('planetTooltip');
+        // Planet tooltips
+        const tooltip = document.getElementById('tooltip');
         const planets = document.querySelectorAll('.planet');
         
         planets.forEach(planet => {
             planet.addEventListener('mouseenter', function(e) {
-                const planetName = this.getAttribute('data-planet');
-                tooltip.textContent = planetName;
+                tooltip.textContent = this.getAttribute('data-planet');
                 tooltip.classList.add('visible');
-                
-                // Enhanced hover effect
-                this.style.transform = 'translateX(-50%) scale(1.5)';
-                this.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.8)';
             });
             
             planet.addEventListener('mouseleave', function() {
                 tooltip.classList.remove('visible');
-                this.style.transform = 'translateX(-50%) scale(1)';
-                this.style.boxShadow = 'none';
             });
             
             planet.addEventListener('mousemove', function(e) {
@@ -550,32 +387,14 @@
             });
         });
 
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '1';
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(50px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.nav-bar');
+            if (window.pageYOffset > 50) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.7)';
+            }
         });
     </script>
 </body>
